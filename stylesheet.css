@@ -1,4 +1,45 @@
+a {
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+}
+
+h1 {
+  text-align: center;
+}
+
 .content {
-  width: 700px;
+  max-width: 700px;
   margin: auto;
+}
+
+.question {
+  margin-left: 30px;
+}
+
+.result {
+  font-size: large;
+}
+
+.correct {
+  font-weight: bold;
+  color: red;
+}
+
+.wrong {
+  font-weight: bold;
+  color: black;
+}
+
+.submit_field {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.button {
+  border-style: none;
+  border-radius : 5%;
+  padding       : 12px 12px;
+  background    : #007fff;
+  color         : #ffffff;
 }
