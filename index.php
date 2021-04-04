@@ -1,7 +1,9 @@
 <?php
+// 正解or不正解のメッセージ
 $correct_msg = "<span class='correct'>○ 正解</span>";
 $wrong_msg = "<span class='wrong'>× 不正解</span>";
 
+// Q1の選択肢
 $options_q1 = array(
   "ぺこぱ",
   "かまいたち",
@@ -9,6 +11,7 @@ $options_q1 = array(
   "マヂカルラブリー"
 );
 
+// Q2の選択肢
 $options_q2 = array(
   "蛙亭",
   "パーパー",
@@ -20,8 +23,10 @@ $options_q2 = array(
   "Aマッソ"
 );
 
+// Q1の答え
 $correct1 = "かまいたち";
 
+// Q2の答え
 $correct2 = array(
   "蛙亭",
   "パーパー",
@@ -30,8 +35,21 @@ $correct2 = array(
   "納言"
 );
 
+// Q3の答え
 $correct3 = "のぶゆき";
 
+/* 正誤判定処理の流れ
+  1. フォームから受け取ったパラメータ$_POSTに、その問題の回答が含まれているか調べる
+  2. 回答が含まれていたら、正誤判定を行い、結果発表のメッセージを作成する
+  3. さらに、「あなたの回答」 のメッセージを作成する
+  
+  【無回答でフォームが送信された場合】
+  ・見た目上は何もしない。回答があった場合のみ正解か不正解を表示する
+  ・ラジオボタンとチェックボックスは上記1の処理でNULLでなければ正誤判定を行う
+  ・テキストボックスの場合は上記1の処理に加え、空の文字列""かどうかも調べる
+*/
+
+// Q1の正誤判定処理
 if (isset($_POST["a1"])) {
   $answer1 = $_POST["a1"];
   if ($answer1 == $correct1) {
@@ -42,6 +60,7 @@ if (isset($_POST["a1"])) {
   $print_answer1 = " （あなたの回答: {$answer1}）";
 } 
 
+// Q2の正誤判定処理
 if (isset($_POST["a2"])) {
   $answer2 = $_POST["a2"];
   if ($answer2 == $correct2) {
@@ -53,6 +72,7 @@ if (isset($_POST["a2"])) {
   $print_answer2 = " （あなたの回答: {$answer2}）";
 }
 
+// Q3の正誤判定処理
 if (isset($_POST["a3"])) {
   $answer3 = $_POST["a3"];
   if ($answer3 == $correct3) {
@@ -61,7 +81,8 @@ if (isset($_POST["a3"])) {
   } elseif ($answer3 != "" && $answer3 != $correct3) {
     $print_answer3 = " （あなたの回答: {$answer3}）";
     $result3 = $wrong_msg;
-  } 
+  }
+  // 送信された内容が空文字列""だった場合は何もしない
 }
 ?>
 <!DOCTYPE html>
